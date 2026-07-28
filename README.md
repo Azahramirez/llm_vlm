@@ -1,0 +1,1 @@
+En 06_Trans3_5 se encuentra la implementación correcta para detección de objetos con Qwen3.5 0.8b
