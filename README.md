@@ -12,4 +12,10 @@ En la carpeta de `src`, se encuentran los scripts principales para la detección
 3. `validation.py`: Este script valida los cuadros delimitadores generados y corregidos, mostrando las imágenes con los cuadros delimitadores superpuestos y guardando los resultados en una carpeta de salida.
 
 
+## Carpetas de salida
+
+- En `validation`, se guardan las imágenes anotadas con los cuadros delimitadores generados y corregidos.
+
+- En `yolo_labels2B`, se guardan los archivos de etiquetas en formato YOLO correspondientes a las imágenes anotadas.
+
 
