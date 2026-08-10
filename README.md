@@ -11,11 +11,21 @@ En la carpeta de `src`, se encuentran los scripts principales para la detección
 
 3. `validation.py`: Este script valida los cuadros delimitadores generados y corregidos, mostrando las imágenes con los cuadros delimitadores superpuestos y guardando los resultados en una carpeta de salida.
 
+4. `prepare_finetune.py`: Este script prepara los datos anotados para el entrenamiento de un modelo YOLO, generando archivos de etiquetas en formato YOLO correspondientes a las imágenes anotadas y también organiza los folders de salida.
+
+5. `train_YOLO.py`: Este script entrena un modelo YOLO utilizando los datos anotados y preparados por el script `prepare_finetune.py`. Se pueden ajustar los hiperparámetros de entrenamiento según sea necesario.
+
+6. `eval.py`: Este script evalúa el rendimiento del modelo YOLO entrenado utilizando un conjunto de datos de prueba y genera métricas de evaluación.
+
+7. `yolo_qwen.py`: Este script utiliza el modelo YOLO entrenado y valida usando Qwen, mostrando las imágenes con los cuadros delimitadores superpuestos y guardando los resultados en una carpeta de salida.
+
 
 ## Carpetas de salida
 
 - En `validation`, se guardan las imágenes anotadas con los cuadros delimitadores generados y corregidos.
 
 - En `yolo_labels2B`, se guardan los archivos de etiquetas en formato YOLO correspondientes a las imágenes anotadas.
+
+- En `husky_dataset`, se guardan los resultados del entrenamiento y evaluación del modelo YOLO, incluyendo métricas de evaluación y modelos entrenados.
 
 

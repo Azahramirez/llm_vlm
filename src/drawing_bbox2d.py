@@ -15,11 +15,12 @@ from transformers import Qwen3_5ForConditionalGeneration, AutoProcessor
 PARQUET_PATH = "dataset/train-00000-of-00001.parquet"      # path to your parquet file
 IMAGE_COLUMN = "image"                # column holding the image
 LABEL_COLUMN = "label"                # class label column (used only for output filenames)
-OUTPUT_DIR = "bbox_results4B"           # folder for annotated images
-YOLO_DIR = "yolo_labels4B"              # folder for YOLO-format .txt files
+OUTPUT_DIR = "bbox_resultsDIFF"           # folder for annotated images
+YOLO_DIR = "yolo_labelsDIFF"              # folder for YOLO-format .txt files
 MODEL_ID = "Qwen/Qwen3.5-2B"          # model to use for VLM inference
 MAX_NEW_TOKENS = 1024
 LIMIT = None                          # set to an int to only process first N rows while testing
+CERTAIN_ROWS_ONLY = True             # if True, only process the rows in selected_rows below
 
 CLASS_NAMES = ["husky"]               # single class -> class_id 0
 # ======================================================================
@@ -222,6 +223,18 @@ def main():
     df = pd.read_parquet(PARQUET_PATH)
     print(f"Dataset cargado: {len(df)} filas. Columnas: {list(df.columns)}")
 
+    # Select only certain rows
+    
+    selected_rows =[
+    154, 163, 171, 175, 188, 213, 216, 234, 252, 263,
+    276, 310, 325, 335, 338, 344, 367, 1213, 1217, 1218,
+    1249, 1270, 1277, 1287, 1296, 1298, 1112, 1115, 1123,
+    1144, 1151
+    ] # Example: select rows by index
+
+    if CERTAIN_ROWS_ONLY:
+        df = df.iloc[selected_rows]
+
     n_rows = len(df) if LIMIT is None else min(LIMIT, len(df))
 
     # classes.txt for reference (YOLO convention: line N = class_id N)
@@ -248,6 +261,8 @@ def main():
         annotated_img = draw_boxes(pil_image, boxes)
 
         base_name = f"{idx:05d}_{str(label_val).replace(' ', '_')}"
+        if CERTAIN_ROWS_ONLY:
+            base_name = f"{selected_rows[idx]:05d}_{str(label_val).replace(' ', '_')}"
 
         img_out_path = os.path.join(OUTPUT_DIR, f"{base_name}.jpg")
         cv2.imwrite(img_out_path, annotated_img)
