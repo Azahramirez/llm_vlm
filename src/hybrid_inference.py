@@ -1,3 +1,9 @@
+
+"""
+Script for evaluating a hybrid pipeline of YOLOv8 and a Visual Language Model (VLM) for husky detection in images.
+"""
+
+
 import os
 import re
 import time

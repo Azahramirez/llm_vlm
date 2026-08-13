@@ -1,3 +1,8 @@
+"""
+Auto-labeling validation script for validating bounding boxes in images in YOLO format using a parquet dataset as the source of truth.
+This script reads YOLO .txt label files, draws the bounding boxes on the corresponding images, and saves the annotated images to an output directory for visual inspection.
+"""
+
 import os
 import io
 from pathlib import Path

@@ -1,3 +1,8 @@
+"""
+Example of the exact format required for an image with two huskies:
+"""
+
+
 import json
 import os
 import time

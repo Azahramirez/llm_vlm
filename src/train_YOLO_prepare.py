@@ -1,3 +1,7 @@
+"""
+Prepare a dataset for training a YOLO model with husky detection, organize the folders in the required structure for ultralytics.
+"""
+
 import os
 import io
 import shutil

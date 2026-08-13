@@ -1,3 +1,8 @@
+
+"""
+Testing script for evaluating a fine-tuned YOLO model on the validation set, generating metrics, confusion matrix, and visual predictions.
+"""
+
 import os
 import time
 from pathlib import Path

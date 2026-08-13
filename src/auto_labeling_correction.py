@@ -1,3 +1,8 @@
+"""
+Auto-labeling correction script for fixing bounding boxes in images using a cv2-based interactive editor.
+"""
+
+
 import os
 import io
 import glob

@@ -1,3 +1,8 @@
+"""
+Auto-labeling script for detecting huskies in images using a Visual Language Model (VLM).
+"""
+
+
 import json
 import os
 import re

@@ -1,3 +1,8 @@
+
+"""
+Training script for a YOLO model with husky detection and also all the other 80 COCO classes.
+"""
+
 from ultralytics import YOLO
 
 # ============================== CONFIG ==============================
