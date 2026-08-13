@@ -10,63 +10,68 @@ False Positives (se predijo husky y no lo era): 0
 Precision (solo husky): 1.0000
 Recall (solo husky):    0.7222
 
+===================================
 Latencia / FPS (device=cuda:0, imgsz=640, 50 corridas tras 10 de calentamiento)
 ===================================
-Latencia promedio: 12.48 ms  (+/- 1.69 ms)
-Latencia p95:      16.30 ms
-Latencia min/max:  10.09 / 18.00 ms
-FPS (extremo a extremo, batch=1): 80.11
-
-
-
-===================================
-Matriz de confusión - clase 'husky' (tras filtro Qwen0.8)
-===================================
-True Positives:  35
-False Positives: 12
-False Negatives: 2
-Precision: 0.7447
-Recall:    0.9459
-
+Latencia promedio: 12.62 ms  (+/- 0.85 ms)
+Latencia p95:      14.34 ms
+Latencia min/max:  10.97 / 14.91 ms
+FPS (extremo a extremo, batch=1): 79.22
 ===================================
 
-Latencia / FPS
-===================================
-YOLO solo   -> promedio: 18.54 ms  (min 11.80 / max 48.94)
-Qwen (por crop) -> promedio: 477.69 ms  (min 427.47 / max 553.23, n=54 crops evaluados)
-Pipeline completo (YOLO + todos los crops Qwen) por imagen -> promedio: 878.38 ms
-FPS del pipeline completo: 1.14
 
+# Qwen 0.8B
+===================================
 mAP@50 (pipeline YOLO + filtro Qwen)
 ===================================
-mAP@50 (husky, único class): 0.9108
+mAP@50 (husky, único class): 0.7888
 Total GT huskies: 37
-Total detecciones finales (tras filtro Qwen): 47
-
-
-
-===================================
-mAP@50 (pipeline YOLO + filtro Qwen2B)
-===================================
-mAP@50 (husky, único class): 0.9108
-Total GT huskies: 37
-Total detecciones finales (tras filtro Qwen): 47
+Total detecciones finales (tras filtro Qwen): 32
 
 ===================================
 Matriz de confusión - clase 'husky' (tras filtro Qwen)
 ===================================
-True Positives:  35
-False Positives: 12
-False Negatives: 2
-Precision: 0.7447
-Recall:    0.9459
+True Positives:  30
+False Positives: 2
+False Negatives: 7
+Precision: 0.9375
+Recall:    0.8108
 
 ===================================
 Latencia / FPS
 ===================================
-YOLO solo   -> promedio: 18.61 ms  (min 12.42 / max 49.59)
-Qwen (por crop) -> promedio: 496.97 ms  (min 444.74 / max 582.58, n=54 crops evaluados)
-Pipeline completo (YOLO + todos los crops Qwen) por imagen -> promedio: 913.16 ms
-FPS del pipeline completo: 1.10
+YOLO solo   -> promedio: 20.46 ms  (min 12.09 / max 52.69)
+Qwen (por crop) -> promedio: 517.44 ms  (min 490.60 / max 619.37, n=34 crops evaluados)
+Pipeline completo (YOLO + todos los crops Qwen) por imagen -> promedio: 606.88 ms
+FPS del pipeline completo: 1.65
+===================================
+
+
+
+# Qwen 2B
+
+===================================
+mAP@50 (pipeline YOLO + filtro Qwen)
+===================================
+mAP@50 (husky, único class): 0.7620
+Total GT huskies: 37
+Total detecciones finales (tras filtro Qwen): 31
+
+===================================
+Matriz de confusión - clase 'husky' (tras filtro Qwen)
+===================================
+True Positives:  29
+False Positives: 2
+False Negatives: 8
+Precision: 0.9355
+Recall:    0.7838
+
+===================================
+Latencia / FPS
+===================================
+YOLO solo   -> promedio: 20.58 ms  (min 12.50 / max 62.98)
+Qwen (por crop) -> promedio: 494.20 ms  (min 462.61 / max 585.00, n=34 crops evaluados)
+Pipeline completo (YOLO + todos los crops Qwen) por imagen -> promedio: 580.67 ms
+FPS del pipeline completo: 1.72
 ===================================
 

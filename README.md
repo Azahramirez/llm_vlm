@@ -5,19 +5,19 @@
 ## Descripción
 En la carpeta de `src`, se encuentran los scripts principales para la detección y anotación de huskies en imágenes. Estos scripts utilizan un modelo de lenguaje visual (VLM) para generar cuadros delimitadores (bounding boxes) alrededor de los huskies en las imágenes.
 
-1. `drawing_bbox2d.py`: Este script procesa un archivo Parquet que contiene imágenes y etiquetas, y utiliza un modelo VLM para generar cuadros delimitadores alrededor de los huskies en las imágenes. Los resultados se guardan en una carpeta especificada.
+1. `auto_labeling.py`: Este script procesa un archivo Parquet que contiene imágenes y etiquetas, y utiliza un modelo VLM para generar cuadros delimitadores alrededor de los huskies en las imágenes. Los resultados se guardan en una carpeta especificada.
 
-2. `correction.py`: Este script permite corregir manualmente los cuadros delimitadores generados por el modelo VLM. Se puede interactuar con la imagen para agregar, eliminar o ajustar los cuadros delimitadores.
+2. `auto_labeling_correction.py`: Este script permite corregir manualmente los cuadros delimitadores generados por el modelo VLM. Se puede interactuar con la imagen para agregar, eliminar o ajustar los cuadros delimitadores.
 
-3. `validation.py`: Este script valida los cuadros delimitadores generados y corregidos, mostrando las imágenes con los cuadros delimitadores superpuestos y guardando los resultados en una carpeta de salida.
+3. `auto_labeling_validation.py`: Este script valida los cuadros delimitadores generados y corregidos, mostrando las imágenes con los cuadros delimitadores superpuestos y guardando los resultados en una carpeta de salida.
 
 4. `prepare_finetune.py`: Este script prepara los datos anotados para el entrenamiento de un modelo YOLO, generando archivos de etiquetas en formato YOLO correspondientes a las imágenes anotadas y también organiza los folders de salida.
 
-5. `train_YOLO.py`: Este script entrena un modelo YOLO utilizando los datos anotados y preparados por el script `prepare_finetune.py`. Se pueden ajustar los hiperparámetros de entrenamiento según sea necesario.
+5. `train_YOLO.py`: Este script entrena un modelo YOLO utilizando los datos anotados y preparados por el script `train_YOLO_prepare.py`. Se pueden ajustar los hiperparámetros de entrenamiento según sea necesario.
 
-6. `eval.py`: Este script evalúa el rendimiento del modelo YOLO entrenado utilizando un conjunto de datos de prueba y genera métricas de evaluación.
+6. `yolo_inference.py`: Este script evalúa el rendimiento del modelo YOLO entrenado utilizando un conjunto de datos de prueba y genera métricas de evaluación.
 
-7. `yolo_qwen.py`: Este script utiliza el modelo YOLO entrenado y valida usando Qwen, mostrando las imágenes con los cuadros delimitadores superpuestos y guardando los resultados en una carpeta de salida.
+7. `hybrid_inference.py`: Este script utiliza el modelo YOLO entrenado y valida usando Qwen, mostrando las imágenes con los cuadros delimitadores superpuestos y guardando los resultados en una carpeta de salida.
 
 
 ## Carpetas de salida

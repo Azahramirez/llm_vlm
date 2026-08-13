@@ -12,7 +12,7 @@ WEIGHTS_PATH = "best.pt"   # fine-tuned checkpoint
 DATA_YAML = "husky_dataset2/dataset.yaml"
 
 IMG_SIZE = 640
-CONF_THRESHOLD = 0.25          # confidence threshold used for prediction visualization 0.25 originally
+CONF_THRESHOLD = 0.1          # confidence threshold used for prediction visualization 0.25 originally
 IOU_THRESHOLD = 0.5            # IoU threshold for NMS during prediction
 
 PROJECT_DIR = "runs_husky"
@@ -147,7 +147,7 @@ def print_husky_confusion(metrics, class_names, save_dir):
     ax.set_yticklabels(focus_labels)
     ax.set_xlabel("True")
     ax.set_ylabel("Predicted")
-    ax.set_title("Confusion matrix - husky (focused view)")
+    ax.set_title("Confusion matrix - husky (ONLY YOLO)")
 
     for i in range(sub_matrix.shape[0]):
         for j in range(sub_matrix.shape[1]):

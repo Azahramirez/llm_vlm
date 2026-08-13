@@ -16,7 +16,8 @@ YOLO_WEIGHTS_PATH = "best.pt"                       # fine-tuned YOLOv8 checkpoi
 VAL_IMAGES_DIR = "husky_dataset2/images/val"
 VAL_LABELS_DIR = "husky_dataset2/labels/val"         # YOLO-format ground truth (class 80 = husky)
 
-QWEN_MODEL_ID = "Qwen/Qwen3.5-2B"
+QWEN_MODEL_ID = "Qwen/Qwen3.5-0.8B"
+QWEN_MODEL_NAME=QWEN_MODEL_ID.split("/")[-1]  # "Qwen3.5-2B"
 
 HUSKY_CLASS_ID = 80
 IMG_SIZE = 640
@@ -25,7 +26,7 @@ IMG_SIZE = 640
 # Kept low so the VLM gets a chance to reject/accept borderline detections
 # and so the resulting precision-recall curve covers enough of the
 # confidence range for a meaningful mAP@50. Raise it if this is too slow.
-YOLO_CANDIDATE_CONF = 0.05
+YOLO_CANDIDATE_CONF = 0.1
 YOLO_IOU_NMS = 0.5
 
 IOU_MATCH_THRESHOLD = 0.5    # IoU threshold for both mAP@50 and the confusion matrix
@@ -187,8 +188,8 @@ def compute_ap(tp, fp, n_gt):
 
 def plot_pr_curve(recalls, precisions, interp_precisions, ap, save_path):
     fig, ax = plt.subplots(figsize=(6, 5))
-    ax.plot(recalls, precisions, marker=".", linewidth=1, alpha=0.5,
-            label="Precision-Recall (raw)", color="steelblue")
+    #ax.plot(recalls, precisions, marker=".", linewidth=1, alpha=0.5,
+    #        label="Precision-Recall (raw)", color="steelblue")
     ax.plot(recalls, interp_precisions, linewidth=2,
             label="Interpolated (used for AP)", color="darkorange")
     ax.fill_between(recalls, 0, interp_precisions, alpha=0.15, color="darkorange")
@@ -197,7 +198,7 @@ def plot_pr_curve(recalls, precisions, interp_precisions, ap, save_path):
     ax.set_ylabel("Precision")
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1.05)
-    ax.set_title(f"Precision-Recall Curve - husky (mAP@50 = {ap:.4f})")
+    ax.set_title(f"PR Curve  (mAP@50 = {ap:.4f}),{QWEN_MODEL_NAME}")
     ax.legend(loc="lower left")
     ax.grid(alpha=0.3)
 
@@ -255,7 +256,7 @@ def plot_confusion_matrix(tp, fp, fn, save_path):
     ax.set_yticklabels(labels)
     ax.set_xlabel("True")
     ax.set_ylabel("Predicted")
-    ax.set_title("Confusion Matrix - husky (post Qwen filter)")
+    ax.set_title(f"Confusion Matrix - husky({QWEN_MODEL_NAME})")
 
     for i in range(2):
         for j in range(2):
@@ -449,11 +450,11 @@ def main():
     if len(flat) > 0:
         plot_pr_curve(
             curve_recalls, curve_precisions, curve_interp_precisions, map50,
-            os.path.join(run_dir, "pr_curve_husky.png"),
+            os.path.join(run_dir, f"pr_curve_husky{QWEN_MODEL_NAME}.png"),
         )
         plot_confidence_curves(
             flat, tp, fp, total_gt,
-            os.path.join(run_dir, "confidence_curve_husky.png"),
+            os.path.join(run_dir, f"confidence_curve_husky{QWEN_MODEL_NAME}.png"),
         )
     else:
         print("[WARNING] No hay detecciones finales; se omiten PR curve y "
@@ -461,7 +462,7 @@ def main():
 
     plot_confusion_matrix(
         total_tp, total_fp, total_fn,
-        os.path.join(run_dir, "confusion_matrix_husky.png"),
+        os.path.join(run_dir, f"confusion_matrix_husky{QWEN_MODEL_NAME}.png"),
     )
 
 
