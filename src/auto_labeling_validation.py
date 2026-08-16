@@ -19,7 +19,7 @@ PARQUET_PATH =  "dataset/train-00000-of-00001.parquet"    # original dataset (so
 IMAGE_COLUMN = "image"
 LABEL_COLUMN = "label"
 
-LABEL_DIR = "yolo_labels2B"        # corrected YOLO .txt files
+LABEL_DIR = "yolo_labelsDIFF"        # corrected YOLO .txt files
 OUTPUT_DIR = "validation"          # where annotated validation images are saved
 
 SHOW_WINDOW = True               # set True to also preview each image before saving

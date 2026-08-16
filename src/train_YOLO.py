@@ -7,7 +7,7 @@ from ultralytics import YOLO
 
 # ============================== CONFIG ==============================
 BASE_WEIGHTS = "yolov8s.pt"          # COCO-pretrained checkpoint (80 classes)
-DATA_YAML = "husky_dataset/dataset.yaml"  # produced by prepare_finetune_dataset.py
+DATA_YAML = "husky_dataset2/dataset.yaml"  # produced by prepare_finetune_dataset.py
 CERTAIN_ROWS_ONLY = True             # if True, only process the rows in selected_rows below
 
 EPOCHS = 100

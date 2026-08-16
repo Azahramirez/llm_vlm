@@ -16,7 +16,7 @@ from PIL import Image
 PARQUET_PATH = "dataset/train-00000-of-00001.parquet"   # original dataset (source of truth for images)
 IMAGE_COLUMN = "image"
 LABEL_COLUMN = "label"
-YOLO_DIR = "yolo_labels2B"           # existing YOLO .txt files to correct (in place)
+YOLO_DIR = "yolo_labelsDIFF"           # existing YOLO .txt files to correct (in place)
 CLASS_ID = 0                       # single class: husky
 WINDOW_NAME = "Bbox Corrector  [drag=new box | click-inside=delete | n/p=next/prev | s=save | u=undo | q=quit]"
 DISPLAY_MAX_SIDE = 1000            # downscale large images for display only (boxes still saved at full res)
